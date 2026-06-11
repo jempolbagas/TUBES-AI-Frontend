@@ -9,6 +9,7 @@ import { PredictionResult } from "@/components/dashboard/prediction-result";
 import { AqiLegend } from "@/components/dashboard/aqi-legend";
 import { usePrediction } from "@/hooks/use-prediction";
 import { WeatherInput } from "@/types";
+import { HistoricalTrendChart } from "@/components/dashboard/historical-trend-chart";
 
 export default function Home() {
   const { data, isLoading, error, predict, clear } = usePrediction();
@@ -54,6 +55,7 @@ export default function Home() {
               isLoading={isLoading}
               predictionData={data}
             />
+            <HistoricalTrendChart />
           </div>
 
           {/* Results: Gauge and Health Recommendations (Col Span 5) */}

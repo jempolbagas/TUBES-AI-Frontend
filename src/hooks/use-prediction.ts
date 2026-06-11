@@ -33,8 +33,8 @@ export function usePrediction() {
         throw new Error("Unknown prediction type");
       }
       setData(result);
-    } catch (err: any) {
-      setError(err?.message || "Failed to fetch prediction");
+    } catch (err: unknown) {
+      setError(err instanceof Error ? err.message : "Failed to fetch prediction");
     } finally {
       setIsLoading(false);
     }

@@ -20,6 +20,7 @@ export function AqiGauge({ value }: AqiGaugeProps) {
   const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setIsMounted(true);
   }, []);
 
@@ -85,6 +86,7 @@ export function AqiGauge({ value }: AqiGaugeProps) {
               fontWeight: "600",
             },
           },
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         } as any}
       />
     </div>

@@ -18,20 +18,24 @@ interface HistoryTabProps {
 export function HistoryTab({ onPredict, isLoading, predictionData }: HistoryTabProps) {
   const { t } = useTranslation();
   
-  const defaultDate = new Date();
-  defaultDate.setDate(defaultDate.getDate() - 7);
-  const formattedDefault = defaultDate.toISOString().split("T")[0];
+  const [formattedDefault] = useState(() => {
+    const defaultDate = new Date();
+    defaultDate.setDate(defaultDate.getDate() - 7);
+    return defaultDate.toISOString().split("T")[0];
+  });
 
   const [selectedDate, setSelectedDate] = useState(formattedDefault);
+
+  // Keep it constrained to 2 days ago for Open Meteo archive reliability
+  const [maxDateStr] = useState(() => {
+    return new Date(Date.now() - 2 * 86400000).toISOString().split("T")[0];
+  });
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!selectedDate) return;
     onPredict(selectedDate);
   };
-
-  // Keep it constrained to 2 days ago for Open Meteo archive reliability
-  const maxDateStr = new Date(Date.now() - 2 * 86400000).toISOString().split("T")[0];
 
   return (
     <div className="space-y-6">

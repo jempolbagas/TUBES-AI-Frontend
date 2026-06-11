@@ -119,23 +119,38 @@ export function ManualTab({ onPredict, isLoading }: ManualTabProps) {
 
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
         {fields.map((f) => (
-          <div key={f.name} className="space-y-1.5">
+          <div key={f.name} className="space-y-2 p-3.5 rounded-xl border border-border bg-card/45 backdrop-blur-xs flex flex-col justify-between">
             <Label htmlFor={f.name} className="text-xs font-bold text-text-secondary">
               {f.label}
             </Label>
-            <Input
-              id={f.name}
-              name={f.name}
-              type="number"
-              min={f.min}
-              max={f.max}
-              step={f.step}
-              value={formData[f.name as keyof WeatherInput]}
-              onChange={handleChange}
-              disabled={isLoading}
-              className="bg-white/50 border-border focus:border-accent-green hover:border-accent-sage/60 rounded-xl"
-              required
-            />
+            <div className="flex gap-3 items-center">
+              <input
+                type="range"
+                id={`${f.name}-slider`}
+                name={f.name}
+                min={f.min}
+                max={f.max}
+                step={f.step}
+                value={formData[f.name as keyof WeatherInput]}
+                onChange={handleChange}
+                disabled={isLoading}
+                className="flex-1 accent-accent-green cursor-pointer h-1.5 rounded-lg bg-bg-secondary"
+                aria-label={`${f.label} slider`}
+              />
+              <Input
+                id={f.name}
+                name={f.name}
+                type="number"
+                min={f.min}
+                max={f.max}
+                step={f.step}
+                value={formData[f.name as keyof WeatherInput]}
+                onChange={handleChange}
+                disabled={isLoading}
+                className="bg-white/50 border-border focus:border-accent-green hover:border-accent-sage/60 rounded-xl w-[90px] text-right font-semibold text-text-primary"
+                required
+              />
+            </div>
           </div>
         ))}
       </div>

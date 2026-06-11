@@ -2,17 +2,28 @@
 
 import React from "react";
 import { NumberTicker } from "@/components/animated/number-ticker";
+import { cn } from "@/lib/utils";
 
 interface MetricCardProps {
   icon: React.ReactNode;
   label: string;
   value: number;
   unit: string;
+  onClick?: () => void;
 }
 
-export function MetricCard({ icon, label, value, unit }: MetricCardProps) {
+export function MetricCard({ icon, label, value, unit, onClick }: MetricCardProps) {
+  const isClickable = !!onClick;
   return (
-    <div className="glass-card glass-card-hover p-4 rounded-xl flex items-center gap-4">
+    <div
+      onClick={onClick}
+      className={cn(
+        "glass-card p-4 rounded-xl flex items-center gap-4 transition-all duration-300",
+        isClickable
+          ? "cursor-pointer hover:scale-[1.03] active:scale-[0.97] hover:border-accent-green/30 hover:shadow-md"
+          : "glass-card-hover"
+      )}
+    >
       <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-accent-green/10 text-accent-green">
         {icon}
       </div>

@@ -6,7 +6,7 @@ import { AlertCircle, Calendar, Sparkles } from "lucide-react";
 import { useTranslation } from "@/i18n";
 import { PredictionResponse } from "@/types";
 import { AqiGauge } from "./aqi-gauge";
-import { getAqiBgColorClass, getAqiCategory, getAqiTextColorClass } from "@/lib/aqi-utils";
+import { getAqiBgColorClass, getAqiCategory } from "@/lib/aqi-utils";
 import { HealthTips } from "./health-tips";
 import { TextShimmer } from "@/components/animated/text-shimmer";
 

@@ -3,7 +3,6 @@
 import React from "react";
 import { MapPin, ChevronDown } from "lucide-react";
 import { useTranslation } from "@/i18n";
-import { TextShimmer } from "@/components/animated/text-shimmer";
 
 export function HeroSection() {
   const { t } = useTranslation();
@@ -36,8 +35,8 @@ export function HeroSection() {
         </h1>
 
         {/* Subtitle */}
-        <p className="text-base sm:text-lg md:text-xl text-text-secondary leading-relaxed font-medium mb-8 max-w-2xl">
-          <TextShimmer>{t.hero.subtitle}</TextShimmer>
+        <p className="text-base sm:text-lg md:text-xl text-text-primary leading-relaxed font-semibold mb-8 max-w-2xl">
+          {t.hero.subtitle}
         </p>
 
         {/* CTA Button */}
@@ -53,9 +52,9 @@ export function HeroSection() {
       {/* Scroll Down Indicator */}
       <div
         onClick={handleScrollToDashboard}
-        className="absolute bottom-0 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 text-xs text-text-muted hover:text-text-secondary select-none cursor-pointer transition-colors"
+        className="absolute bottom-0 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 text-xs text-text-primary hover:text-accent-green select-none cursor-pointer transition-colors"
       >
-        <span className="font-medium animate-pulse">{t.hero.scrollHint}</span>
+        <span className="font-semibold">{t.hero.scrollHint}</span>
         <ChevronDown className="h-4 w-4 animate-bounce text-accent-green" />
       </div>
     </div>

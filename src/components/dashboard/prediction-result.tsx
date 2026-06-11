@@ -8,7 +8,6 @@ import { PredictionResponse } from "@/types";
 import { AqiGauge } from "./aqi-gauge";
 import { getAqiBgColorClass, getAqiCategory } from "@/lib/aqi-utils";
 import { HealthTips } from "./health-tips";
-import { TextShimmer } from "@/components/animated/text-shimmer";
 
 interface PredictionResultProps {
   data: PredictionResponse | null;
@@ -39,9 +38,9 @@ export function PredictionResult({ data, isLoading, error }: PredictionResultPro
           <div className="h-20 w-20 rounded-full border-4 border-accent-sage/30 border-t-accent-green animate-spin" />
           <Sparkles className="absolute inset-0 m-auto h-6 w-6 text-accent-green animate-pulse" />
         </div>
-        <TextShimmer className="text-base font-bold text-text-primary mb-2">
+        <span className="text-base font-bold text-text-primary mb-2">
           {t.predictTab.loadingText}
-        </TextShimmer>
+        </span>
       </div>
     );
   }

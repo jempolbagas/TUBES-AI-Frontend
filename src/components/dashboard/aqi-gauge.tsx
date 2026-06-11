@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
+import { useTheme } from "@/hooks/use-theme";
 
 const GaugeComponent = dynamic(() => import("react-gauge-component"), {
   ssr: false,
@@ -17,6 +18,7 @@ interface AqiGaugeProps {
 }
 
 export function AqiGauge({ value }: AqiGaugeProps) {
+  const { theme } = useTheme();
   const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
@@ -34,6 +36,11 @@ export function AqiGauge({ value }: AqiGaugeProps) {
 
   // Cap display gauge values at 300
   const gaugeValue = Math.min(value, 300);
+
+  // Theme-aware styles
+  const valueColor = theme === "dark" ? "#E2EAE3" : "#2D3B2D";
+  const tickColor = theme === "dark" ? "#A8C5A0" : "#5A6B5A";
+  const needleColor = theme === "dark" ? "#5BA066" : "#3D7C47";
 
   return (
     <div className="w-full max-w-[280px] mx-auto">
@@ -54,7 +61,7 @@ export function AqiGauge({ value }: AqiGaugeProps) {
         }}
         pointer={{
           type: "needle",
-          color: "#3D7C47",
+          color: needleColor,
           length: 0.75,
           width: 12,
           animationDelay: 50,
@@ -63,7 +70,7 @@ export function AqiGauge({ value }: AqiGaugeProps) {
           valueLabel: {
             style: {
               fontSize: "32px",
-              fill: "#2D3B2D",
+              fill: valueColor,
               fontFamily: "var(--font-outfit), sans-serif",
               fontWeight: "700",
             },
@@ -82,7 +89,7 @@ export function AqiGauge({ value }: AqiGaugeProps) {
             ],
             style: {
               fontSize: "9px",
-              fill: "#5A6B5A",
+              fill: tickColor,
               fontWeight: "600",
             },
           },

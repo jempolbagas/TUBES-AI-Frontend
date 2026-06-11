@@ -7,6 +7,8 @@ export const id = {
     title: "Prediktor Kualitas Udara Jakarta",
     subtitle: "Prediksi tingkat indeks standar pencemar udara (ISPU/AQI) besok berbasis kecerdasan buatan dan data cuaca terkini",
     badge: "Jakarta, Indonesia",
+    cta: "Mulai Prediksi",
+    scrollHint: "Gulir ke bawah untuk prakiraan",
   },
   tabs: {
     predict: "Prediksi Esok Hari",

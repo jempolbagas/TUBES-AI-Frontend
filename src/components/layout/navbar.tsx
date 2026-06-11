@@ -10,8 +10,8 @@ export function Navbar() {
   const { theme, toggleTheme } = useTheme();
 
   return (
-    <nav className="sticky top-0 z-50 w-full border-b border-border/80 bg-background/80 backdrop-blur-md">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <nav className="sticky top-4 z-50 mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 pointer-events-none">
+      <div className="w-full border border-border/40 bg-background/70 dark:bg-bg-card/75 backdrop-blur-lg shadow-lg rounded-2xl pointer-events-auto px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
           {/* Logo Brand */}
           <div className="flex items-center gap-2">

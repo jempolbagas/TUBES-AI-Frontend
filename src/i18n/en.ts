@@ -7,6 +7,8 @@ export const en = {
     title: "Jakarta Air Quality Predictor",
     subtitle: "AI-powered forecasts of tomorrow's air quality based on weather conditions",
     badge: "Jakarta, Indonesia",
+    cta: "Start Analysis",
+    scrollHint: "Scroll down to forecast",
   },
   tabs: {
     predict: "Predict Tomorrow",

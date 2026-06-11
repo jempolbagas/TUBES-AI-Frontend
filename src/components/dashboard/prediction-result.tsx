@@ -48,17 +48,30 @@ export function PredictionResult({ data, isLoading, error }: PredictionResultPro
 
   if (!data) {
     return (
-      <div className="glass-card p-6 rounded-2xl border-dashed border-2 border-border/50 flex flex-col items-center justify-center text-center h-full min-h-[350px]">
-        <div className="h-16 w-16 rounded-full bg-bg-secondary flex items-center justify-center text-text-muted mb-4 border border-border">
-          <Sparkles className="h-7 w-7" />
+      <motion.div
+        initial={{ opacity: 0, scale: 0.96 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.4, ease: "easeOut" }}
+        className="glass-card p-8 rounded-2xl border-dashed border-2 border-border/50 flex flex-col items-center justify-center text-center h-full min-h-[350px]"
+      >
+        <div className="relative mb-6 flex h-16 w-16 items-center justify-center">
+          {/* Glowing expanding pulse rings */}
+          <div className="absolute inset-0 rounded-full bg-accent-green/10 animate-ping opacity-60" />
+          <div className="absolute inset-2 rounded-full bg-accent-green/20 animate-pulse" />
+          
+          {/* Icon Container */}
+          <div className="relative h-12 w-12 rounded-full bg-bg-secondary flex items-center justify-center text-accent-green border border-border shadow-sm">
+            <Sparkles className="h-5 w-5" />
+          </div>
         </div>
-        <h3 className="font-heading text-lg font-bold text-text-primary mb-1">
+        
+        <h3 className="font-heading text-lg font-bold text-text-primary mb-2">
           {t.results.waiting}
         </h3>
-        <p className="text-sm text-text-secondary max-w-xs leading-relaxed">
+        <p className="text-sm text-text-secondary max-w-xs leading-relaxed font-medium">
           {t.results.waitingDesc}
         </p>
-      </div>
+      </motion.div>
     );
   }
 

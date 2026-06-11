@@ -6,6 +6,8 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { LanguageProvider } from "@/i18n";
 import { ThemeProvider } from "@/hooks/use-theme";
 
+import { ThemedBackground } from "@/components/ui/themed-background";
+
 const outfit = Outfit({
   variable: "--font-outfit",
   subsets: ["latin"],
@@ -37,7 +39,7 @@ export default function RootLayout({
                 try {
                   const stored = localStorage.getItem('aqi-theme');
                   if (stored === 'dark' || (!stored && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-                    document.documentElement.classList.add('dark');
+                     document.documentElement.classList.add('dark');
                   } else {
                     document.documentElement.classList.remove('dark');
                   }
@@ -48,14 +50,10 @@ export default function RootLayout({
         />
       </head>
       <body className="min-h-full flex flex-col bg-bg-primary text-text-primary relative">
-        <div className="bg-blobs" aria-hidden="true">
-          <div className="blob blob-1"></div>
-          <div className="blob blob-2"></div>
-          <div className="blob blob-3"></div>
-        </div>
         <LanguageProvider>
           <ThemeProvider>
             <TooltipProvider>
+              <ThemedBackground />
               {children}
             </TooltipProvider>
           </ThemeProvider>

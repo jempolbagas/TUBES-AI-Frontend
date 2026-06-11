@@ -33,7 +33,7 @@ export default function Home() {
   };
 
   return (
-    <div className="flex min-h-screen flex-col bg-bg-primary text-text-primary selection:bg-accent-green/20 selection:text-accent-green">
+    <div className="flex min-h-screen flex-col bg-transparent text-text-primary selection:bg-accent-green/20 selection:text-accent-green">
       {/* Top Navigation */}
       <Navbar />
 

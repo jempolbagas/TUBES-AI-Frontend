@@ -298,7 +298,7 @@ export function HeroSection() {
                     className="glass-card p-6 rounded-2xl border border-red-500/20 text-center w-full bg-gradient-to-b from-white/95 to-bg-secondary/80 dark:from-bg-secondary/95 dark:to-bg-primary/90 space-y-2"
                   >
                     <p className="text-sm font-bold text-red-500">
-                      Gagal memuat data AQI real-time.
+                      {t.results.error}
                     </p>
                     {liveError && (
                       <p className="text-xs text-text-muted leading-relaxed">

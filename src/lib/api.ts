@@ -194,7 +194,7 @@ export async function fetchOpenMeteoData(dateStr: string): Promise<WeatherInput>
 
 // ─── Send weather data to backend for AQI prediction ────────────────────────
 async function sendToPredictionAPI(weatherData: WeatherInput): Promise<number> {
-  // Backend expects "AQI" (uppercase) per backend-doc.md
+  // Backend expects "AQI" (uppercase)
   const payload = {
     AQI: weatherData.aqi,
     temperature_2m_mean: weatherData.temperature_2m_mean,

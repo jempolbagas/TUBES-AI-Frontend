@@ -19,7 +19,15 @@ export function usePrediction() {
   ) => {
     setIsLoading(true);
     setError(null);
-    setLastRequest({ type, inputData });
+
+    if (
+      type === "tomorrow" ||
+      (type === "manual" && inputData && typeof inputData !== "string") ||
+      (type === "date" && typeof inputData === "string")
+    ) {
+      setLastRequest({ type, inputData });
+    }
+
     const startTime = Date.now();
     const delayPromise = new Promise((resolve) => setTimeout(resolve, 3000));
     try {

@@ -10,14 +10,14 @@ import {
   getAqiTextColorClass,
   getAqiBgColorClass,
   getAqiColor,
+  CATEGORY_LABELS,
+  CATEGORY_DESCRIPTIONS,
 } from "@/lib/aqi-utils";
 import { cn } from "@/lib/utils";
 
 interface LiveAqiCardProps {
   aqi: number;
   weatherData: WeatherInput;
-  categoryLabel: { en: string; id: string };
-  description: { en: string; id: string };
   isLoading?: boolean;
 }
 
@@ -172,8 +172,6 @@ function WeatherMiniCard({ icon, label, value, iconBg, iconColor }: WeatherMiniC
 export function LiveAqiCard({
   aqi,
   weatherData,
-  categoryLabel,
-  description,
   isLoading = false,
 }: LiveAqiCardProps) {
   const { t, lang } = useTranslation();
@@ -183,8 +181,11 @@ export function LiveAqiCard({
   const textColorClass = getAqiTextColorClass(category);
   const badgeBgClass = getAqiBgColorClass(category);
 
-  const titleText = lang === "en" ? categoryLabel.en : categoryLabel.id;
-  const descText = lang === "en" ? description.en : description.id;
+  const activeLabel = CATEGORY_LABELS[category] ?? CATEGORY_LABELS.good;
+  const activeDesc = CATEGORY_DESCRIPTIONS[category] ?? CATEGORY_DESCRIPTIONS.good;
+
+  const titleText = lang === "en" ? activeLabel.en : activeLabel.id;
+  const descText = lang === "en" ? activeDesc.en : activeDesc.id;
 
   // Glow colour per category
   const glowMap: Record<string, string> = {

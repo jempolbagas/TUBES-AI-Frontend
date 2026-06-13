@@ -53,3 +53,39 @@ export function getAqiBgColorClass(category: string): string {
       return "bg-bg-secondary text-text-secondary border-border";
   }
 }
+
+export const CATEGORY_LABELS: Record<string, { en: string; id: string }> = {
+  good: { en: "Good", id: "Baik" },
+  moderate: { en: "Moderate", id: "Sedang" },
+  unhealthySensitive: { en: "Unhealthy for Sensitive Groups", id: "Tidak Sehat bagi Kelompok Sensitif" },
+  unhealthy: { en: "Unhealthy", id: "Tidak Sehat" },
+  veryUnhealthy: { en: "Very Unhealthy", id: "Sangat Tidak Sehat" },
+  hazardous: { en: "Hazardous", id: "Berbahaya" },
+};
+
+export const CATEGORY_DESCRIPTIONS: Record<string, { en: string; id: string }> = {
+  good: {
+    en: "Air quality is satisfactory, and air pollution poses little or no risk.",
+    id: "Kualitas udara memuaskan dan polusi udara tidak menimbulkan risiko berarti.",
+  },
+  moderate: {
+    en: "Air quality is acceptable. However, there may be a risk for some people, particularly those who are unusually sensitive to air pollution.",
+    id: "Kualitas udara masih dapat diterima. Namun, mungkin ada risiko bagi sebagian orang, terutama yang sangat sensitif terhadap polusi udara.",
+  },
+  unhealthySensitive: {
+    en: "Members of sensitive groups may experience health effects. The general public is less likely to be affected.",
+    id: "Kelompok sensitif mungkin mengalami dampak kesehatan. Masyarakat umum kemungkinan besar tidak terpengaruh.",
+  },
+  unhealthy: {
+    en: "Some members of the general public may experience health effects; members of sensitive groups may experience more serious health effects.",
+    id: "Sebagian masyarakat umum mungkin mengalami dampak kesehatan; kelompok sensitif mungkin mengalami dampak yang lebih serius.",
+  },
+  veryUnhealthy: {
+    en: "Health alert: The risk of health effects is increased for everyone.",
+    id: "Peringatan kesehatan: Risiko dampak kesehatan meningkat untuk semua orang.",
+  },
+  hazardous: {
+    en: "Health warning of emergency conditions: everyone is more likely to be affected.",
+    id: "Peringatan darurat kesehatan: semua orang kemungkinan besar akan terdampak.",
+  },
+};

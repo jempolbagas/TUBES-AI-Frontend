@@ -104,10 +104,8 @@ npm install
 
 ### 3. Konfigurasi Environment Variables
 Buat file `.env.local` di root folder untuk mengarahkan API jika diperlukan:
-```env
-NEXT_PUBLIC_API_URL=http://localhost:8000
-NEXT_PUBLIC_USE_MOCK=false # Set ke true untuk memaksa penggunaan data mock simulasi
-```
+
+    NEXT_PUBLIC_API_URL=http://localhost:8000
 
 ### 4. Menjalankan Server Pengembangan
 ```bash

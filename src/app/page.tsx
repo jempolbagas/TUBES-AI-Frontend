@@ -12,7 +12,7 @@ import { usePrediction } from "@/hooks/use-prediction";
 import { WeatherInput } from "@/types";
 
 export default function Home() {
-  const { data, isLoading, error, predict, clear } = usePrediction();
+  const { data, isLoading, error, predict, retry, clear } = usePrediction();
   const [activePredictorTab, setActivePredictorTab] = useState("predict");
 
   const handlePredictTomorrow = () => {
@@ -71,7 +71,7 @@ export default function Home() {
 
           {/* Results: Gauge and Health Recommendations (Col Span 5) */}
           <div className="lg:col-span-5 h-full">
-            <PredictionResult data={data} isLoading={isLoading} error={error} />
+            <PredictionResult data={data} isLoading={isLoading} error={error} onRetry={retry} />
           </div>
         </motion.div>
       </main>

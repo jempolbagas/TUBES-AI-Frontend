@@ -84,7 +84,7 @@ export const en = {
     btnText: "Fetch & Predict Tomorrow",
     loadingText: "Retrieving weather data and running model...",
     lastUpdated: "Last updated today at",
-    referenceDate: "Reference Date (Today)",
+    referenceDate: "Reference Date",
     predictionDate: "Forecast Date (Tomorrow)",
   },
   manualTab: {

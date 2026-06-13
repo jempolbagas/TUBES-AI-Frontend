@@ -11,7 +11,8 @@ import {
   AlertTriangle,
   Thermometer,
   Droplets,
-  Wind
+  Wind,
+  RefreshCw
 } from "lucide-react";
 import { useTranslation } from "@/i18n";
 import { PredictionResponse } from "@/types";
@@ -24,11 +25,13 @@ import {
 import { HealthTips } from "./health-tips";
 import { NumberTicker } from "@/components/animated/number-ticker";
 import { cn } from "@/lib/utils";
+import { AiThinkingLoader } from "./ai-thinking-loader";
 
 interface PredictionResultProps {
   data: PredictionResponse | null;
   isLoading: boolean;
   error: string | null;
+  onRetry?: () => void;
 }
 
 // ─── Radial 240-degree speedometer gauge ──────────────────────────────────────
@@ -167,7 +170,7 @@ function AqiGaugeSVG({ aqi, color }: { aqi: number; color: string }) {
   );
 }
 
-export function PredictionResult({ data, isLoading, error }: PredictionResultProps) {
+export function PredictionResult({ data, isLoading, error, onRetry }: PredictionResultProps) {
   const { t, lang } = useTranslation();
 
   if (error) {
@@ -180,23 +183,22 @@ export function PredictionResult({ data, isLoading, error }: PredictionResultPro
           {t.results.error}
         </h3>
         <p className="text-sm text-text-secondary max-w-sm mb-2">{error}</p>
-        <p className="text-xs text-text-muted max-w-sm">{t.results.details}: {error}</p>
+        <p className="text-xs text-text-muted max-w-sm mb-6">{t.results.details}: {error}</p>
+        {onRetry && (
+          <button
+            onClick={onRetry}
+            className="group inline-flex items-center gap-2.5 rounded-full bg-red-500/10 hover:bg-red-500/20 border border-red-500/25 hover:border-red-500/40 text-red-600 dark:text-red-400 font-bold text-xs tracking-wide px-5 py-2.5 shadow-sm transition-all duration-300 hover:scale-105 cursor-pointer active:scale-95"
+          >
+            <RefreshCw className="h-3.5 w-3.5 transition-transform duration-500 group-hover:rotate-180" />
+            <span>{lang === "en" ? "Try Again" : "Coba Lagi"}</span>
+          </button>
+        )}
       </div>
     );
   }
 
   if (isLoading) {
-    return (
-      <div className="glass-card p-6 sm:p-7 rounded-3xl flex flex-col items-center justify-center text-center h-full min-h-[350px]">
-        <div className="relative mb-6">
-          <div className="h-20 w-20 rounded-full border-4 border-accent-sage/30 border-t-accent-green animate-spin" />
-          <Sparkles className="absolute inset-0 m-auto h-6 w-6 text-accent-green animate-pulse" />
-        </div>
-        <span className="text-base font-bold text-text-primary mb-2">
-          {t.predictTab.loadingText}
-        </span>
-      </div>
-    );
+    return <AiThinkingLoader />;
   }
 
   if (!data) {

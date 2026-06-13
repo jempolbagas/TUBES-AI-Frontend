@@ -84,7 +84,7 @@ export const id = {
     btnText: "Ambil Data & Prediksi Besok",
     loadingText: "Mengambil data cuaca dan menjalankan model prediksi...",
     lastUpdated: "Terakhir diperbarui hari ini pukul",
-    referenceDate: "Tanggal Referensi (Hari Ini)",
+    referenceDate: "Tanggal Referensi",
     predictionDate: "Tanggal Prediksi (Besok)",
   },
   manualTab: {

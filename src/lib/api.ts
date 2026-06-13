@@ -272,7 +272,7 @@ export async function predictTomorrow(): Promise<PredictionResponse> {
 export async function predictManual(data: WeatherInput): Promise<PredictionResponse> {
   const predictedAqi = await sendToPredictionAPI(data);
 
-  return buildPredictionResponse(predictedAqi, data, "-", "-");
+  return buildPredictionResponse(predictedAqi, data, "", "");
 }
 
 /**

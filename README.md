@@ -51,9 +51,8 @@ src/
 │   └── use-theme.tsx     # Logic toggle & persistensi tema light/dark
 ├── i18n/                 # Kamus terjemahan lokal (Indonesian & English)
 ├── lib/                  # Utilitas dan helper fungsi
-│   ├── api.ts            # Handler pemanggilan endpoint API & mekanisme fallback ke data mock
-│   ├── aqi-utils.ts      # Klasifikasi level AQI, pemetaan warna, & styling Tailwind
-│   └── mock-data.ts      # Penyedia data simulasi cuaca dan respons prediksi
+│   ├── api.ts            # Client API: Open-Meteo fetch + request ke backend prediksi
+│   └── aqi-utils.ts      # Klasifikasi level AQI, pemetaan warna, & styling Tailwind
 └── types/                # Definisi tipe TypeScript untuk input cuaca dan output prediksi
 ```
 

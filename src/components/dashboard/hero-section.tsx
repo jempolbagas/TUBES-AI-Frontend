@@ -129,7 +129,7 @@ export function HeroSection() {
       })
       .catch((err) => {
         console.error("Failed to fetch live AQI for hero:", err);
-        if (active) setLiveError(err instanceof Error ? err.message : "Gagal memuat data AQI.");
+        if (active) setLiveError(err instanceof Error ? err.message : t.results.error);
       })
       .finally(() => {
         if (active) setIsLiveLoading(false);

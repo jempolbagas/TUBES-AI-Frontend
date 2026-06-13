@@ -7,9 +7,9 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-outfit), var(--font-sans);
+  --font-sans: var(--font-outfit), sans-serif;
   --font-mono: var(--font-geist-mono);
-  --font-heading: var(--font-outfit), var(--font-sans);
+  --font-heading: var(--font-outfit), sans-serif;
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -58,12 +58,28 @@
   --color-accent-green-light: var(--accent-green-light);
   --color-accent-sage: var(--accent-sage);
   --color-accent-warm: var(--accent-warm);
+
+  /* Centralized AQI Color variables */
+  --color-aqi-good: var(--aqi-good);
+  --color-aqi-moderate: var(--aqi-moderate);
+  --color-aqi-sensitive: var(--aqi-sensitive);
+  --color-aqi-unhealthy: var(--aqi-unhealthy);
+  --color-aqi-very-unhealthy: var(--aqi-very-unhealthy);
+  --color-aqi-hazardous: var(--aqi-hazardous);
+
+  /* Centralized AQI Text Color variables for accessibility */
+  --color-aqi-good-text: var(--aqi-good-text);
+  --color-aqi-moderate-text: var(--aqi-moderate-text);
+  --color-aqi-sensitive-text: var(--aqi-sensitive-text);
+  --color-aqi-unhealthy-text: var(--aqi-unhealthy-text);
+  --color-aqi-very-unhealthy-text: var(--aqi-very-unhealthy-text);
+  --color-aqi-hazardous-text: var(--aqi-hazardous-text);
 }
 
 :root {
   --background: #F5F0E8;
   --foreground: #2D3B2D;
-  --card: rgba(255, 255, 255, 0.75);
+  --card: rgba(255, 255, 255, 0.88);
   --card-foreground: #2D3B2D;
   --popover: rgba(255, 255, 255, 0.95);
   --popover-foreground: #2D3B2D;
@@ -91,7 +107,7 @@
   /* Custom Eco Palette Specifics */
   --bg-primary: #F5F0E8;
   --bg-secondary: #EDE8DD;
-  --bg-card: rgba(255, 255, 255, 0.75);
+  --bg-card: rgba(255, 255, 255, 0.88);
   --text-primary: #2D3B2D;
   --text-secondary: #5A6B5A;
   --text-muted: #8A9B8A;
@@ -99,12 +115,28 @@
   --accent-green-light: #5BA066;
   --accent-sage: #A8C5A0;
   --accent-warm: #C4956A;
+
+  /* Centralized AQI Colors */
+  --aqi-good: #488B52;
+  --aqi-moderate: #C98E34;
+  --aqi-sensitive: #C66B43;
+  --aqi-unhealthy: #B23A30;
+  --aqi-very-unhealthy: #7A3580;
+  --aqi-hazardous: #521F50;
+
+  /* Centralized AQI Text Colors (Contrast Optimized for Light Mode) */
+  --aqi-good-text: #357241;
+  --aqi-moderate-text: #9E6A16;
+  --aqi-sensitive-text: #A74519;
+  --aqi-unhealthy-text: #962820;
+  --aqi-very-unhealthy-text: #602565;
+  --aqi-hazardous-text: #3D123B;
 }
 
 .dark {
   --background: #121814;
   --foreground: #E2EAE3;
-  --card: rgba(26, 34, 28, 0.7);
+  --card: rgba(26, 34, 28, 0.88);
   --card-foreground: #E2EAE3;
   --popover: rgba(26, 34, 28, 0.9);
   --popover-foreground: #E2EAE3;
@@ -125,7 +157,7 @@
   /* Custom Eco Palette Specifics */
   --bg-primary: #121814;
   --bg-secondary: #1C241E;
-  --bg-card: rgba(26, 34, 28, 0.7);
+  --bg-card: rgba(26, 34, 28, 0.88);
   --text-primary: #E2EAE3;
   --text-secondary: #A8C5A0;
   --text-muted: #7A8E7A;
@@ -133,6 +165,22 @@
   --accent-green-light: #76C182;
   --accent-sage: #3D7C47;
   --accent-warm: #D4A373;
+
+  /* Centralized AQI Colors (Dark Mode) */
+  --aqi-good: #5BA066;
+  --aqi-moderate: #DFAB6C;
+  --aqi-sensitive: #E88252;
+  --aqi-unhealthy: #E85B50;
+  --aqi-very-unhealthy: #B868C1;
+  --aqi-hazardous: #8D3C8A;
+
+  /* Centralized AQI Text Colors (Dark Mode) */
+  --aqi-good-text: #5BA066;
+  --aqi-moderate-text: #DFAB6C;
+  --aqi-sensitive-text: #E88252;
+  --aqi-unhealthy-text: #E85B50;
+  --aqi-very-unhealthy-text: #B868C1;
+  --aqi-hazardous-text: #8D3C8A;
 }
 
 @layer base {
@@ -150,10 +198,16 @@
 /* Glassmorphism custom classes */
 .glass-card {
   background: var(--bg-card);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
   border: 1px solid var(--border);
-  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.04);
+  box-shadow: 0 8px 40px 0 rgba(0, 0, 0, 0.06),
+              0 1px 0 0 rgba(255,255,255,0.12) inset;
+}
+
+.dark .glass-card {
+  box-shadow: 0 8px 40px 0 rgba(0, 0, 0, 0.25),
+              0 1px 0 0 rgba(255,255,255,0.05) inset;
 }
 
 .glass-card-hover {
@@ -162,8 +216,30 @@
 
 .glass-card-hover:hover {
   transform: translateY(-2px);
-  box-shadow: 0 12px 40px 0 rgba(61, 124, 71, 0.08);
+  box-shadow: 0 16px 48px 0 rgba(61, 124, 71, 0.10);
   border-color: rgba(61, 124, 71, 0.25);
+}
+
+/* Stat pill shimmer glow */
+@keyframes hero-float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+}
+
+.hero-float {
+  animation: hero-float 6s ease-in-out infinite;
+}
+
+/* Gradient text pulse */
+@keyframes gradient-shift {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.animated-gradient-text {
+  background-size: 200% 200%;
+  animation: gradient-shift 5s ease infinite;
 }
 
 /* Custom Scrollbar */
@@ -183,4 +259,67 @@
 
 ::-webkit-scrollbar-thumb:hover {
   background: var(--accent-green-light);
+}
+
+/* Background floating glow blobs */
+.bg-blobs {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(130px);
+  opacity: 0;
+  animation: float-blob 25s infinite alternate ease-in-out;
+}
+
+.dark .blob {
+  opacity: 0.12;
+  filter: blur(150px);
+}
+
+.blob-1 {
+  top: -10%;
+  right: 10%;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, var(--accent-green) 0%, rgba(0,0,0,0) 70%);
+}
+
+.blob-2 {
+  bottom: -10%;
+  left: 10%;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, var(--accent-warm) 0%, rgba(0,0,0,0) 70%);
+  animation-delay: -5s;
+}
+
+.blob-3 {
+  top: 40%;
+  right: 40%;
+  width: 450px;
+  height: 450px;
+  background: radial-gradient(circle, rgba(59, 130, 246, 0.35) 0%, rgba(0,0,0,0) 70%);
+  animation-delay: -12s;
+}
+
+@keyframes float-blob {
+  0% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(50px, -30px) scale(1.1); }
+  100% { transform: translate(-30px, 40px) scale(0.95); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

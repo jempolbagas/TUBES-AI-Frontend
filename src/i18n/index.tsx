@@ -21,6 +21,7 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
   useEffect(() => {
     const stored = localStorage.getItem("aqi-lang") as Language;
     if (stored === "en" || stored === "id") {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setLangState(stored);
     }
   }, []);

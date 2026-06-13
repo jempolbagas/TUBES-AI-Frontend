@@ -7,12 +7,12 @@ export function AqiLegend() {
   const { t } = useTranslation();
 
   const categories = [
-    { label: t.legend.good, color: "bg-[#4CAF50]" },
-    { label: t.legend.moderate, color: "bg-[#FFC107]" },
-    { label: t.legend.sensitive, color: "bg-[#FF9800]" },
-    { label: t.legend.unhealthy, color: "bg-[#F44336]" },
-    { label: t.legend.veryUnhealthy, color: "bg-[#9C27B0]" },
-    { label: t.legend.hazardous, color: "bg-[#7B1FA2]" },
+    { label: t.legend.good, color: "bg-aqi-good" },
+    { label: t.legend.moderate, color: "bg-aqi-moderate" },
+    { label: t.legend.sensitive, color: "bg-aqi-sensitive" },
+    { label: t.legend.unhealthy, color: "bg-aqi-unhealthy" },
+    { label: t.legend.veryUnhealthy, color: "bg-aqi-very-unhealthy" },
+    { label: t.legend.hazardous, color: "bg-aqi-hazardous" },
   ];
 
   return (

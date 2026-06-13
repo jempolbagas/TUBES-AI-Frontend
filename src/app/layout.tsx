@@ -4,6 +4,9 @@ import "./globals.css";
 import { cn } from "@/lib/utils";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { LanguageProvider } from "@/i18n";
+import { ThemeProvider } from "@/hooks/use-theme";
+
+import { ThemedBackground } from "@/components/ui/themed-background";
 
 const outfit = Outfit({
   variable: "--font-outfit",
@@ -28,11 +31,38 @@ export default function RootLayout({
       className={cn("h-full", "antialiased", outfit.variable)}
       suppressHydrationWarning
     >
-      <body className="min-h-full flex flex-col bg-bg-primary text-text-primary">
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
+                try {
+                  const stored = localStorage.getItem('aqi-theme');
+                  if (stored === 'dark' || (!stored && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                     document.documentElement.classList.add('dark');
+                  } else {
+                    document.documentElement.classList.remove('dark');
+                  }
+                } catch (_) {}
+              })();
+            `,
+          }}
+        />
+      </head>
+      <body className="min-h-full flex flex-col bg-bg-primary text-text-primary relative">
         <LanguageProvider>
-          <TooltipProvider>
-            {children}
-          </TooltipProvider>
+          <ThemeProvider>
+            <TooltipProvider>
+              <ThemedBackground />
+              <a
+                href="#dashboard"
+                className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] bg-accent-green text-primary-foreground px-4 py-2 rounded-full font-bold shadow-lg"
+              >
+                Skip to content / Lompat ke konten
+              </a>
+              {children}
+            </TooltipProvider>
+          </ThemeProvider>
         </LanguageProvider>
       </body>
     </html>

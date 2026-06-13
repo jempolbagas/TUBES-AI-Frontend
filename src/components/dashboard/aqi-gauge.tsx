@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
+import { useTheme } from "@/hooks/use-theme";
 
 const GaugeComponent = dynamic(() => import("react-gauge-component"), {
   ssr: false,
@@ -17,9 +18,11 @@ interface AqiGaugeProps {
 }
 
 export function AqiGauge({ value }: AqiGaugeProps) {
+  const { theme } = useTheme();
   const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setIsMounted(true);
   }, []);
 
@@ -34,6 +37,30 @@ export function AqiGauge({ value }: AqiGaugeProps) {
   // Cap display gauge values at 300
   const gaugeValue = Math.min(value, 300);
 
+  // Theme-aware styles
+  const valueColor = theme === "dark" ? "#E2EAE3" : "#2D3B2D";
+  const tickColor = theme === "dark" ? "#A8C5A0" : "#5A6B5A";
+  const needleColor = theme === "dark" ? "#5BA066" : "#3D7C47";
+
+  // Subarc colors matching our custom theme-adapted AQI palette
+  const subArcsLight = [
+    { limit: 50, color: "#488B52" },
+    { limit: 100, color: "#C98E34" },
+    { limit: 150, color: "#C66B43" },
+    { limit: 200, color: "#B23A30" },
+    { limit: 300, color: "#7A3580" },
+  ];
+
+  const subArcsDark = [
+    { limit: 50, color: "#5BA066" },
+    { limit: 100, color: "#DFAB6C" },
+    { limit: 150, color: "#E88252" },
+    { limit: 200, color: "#E85B50" },
+    { limit: 300, color: "#B868C1" },
+  ];
+
+  const subArcs = theme === "dark" ? subArcsDark : subArcsLight;
+
   return (
     <div className="w-full max-w-[280px] mx-auto">
       <GaugeComponent
@@ -41,19 +68,13 @@ export function AqiGauge({ value }: AqiGaugeProps) {
         maxValue={300}
         type="semicircle"
         arc={{
-          subArcs: [
-            { limit: 50, color: "#4CAF50" },
-            { limit: 100, color: "#FFC107" },
-            { limit: 150, color: "#FF9800" },
-            { limit: 200, color: "#F44336" },
-            { limit: 300, color: "#9C27B0" },
-          ],
+          subArcs,
           width: 0.12,
           padding: 0.015,
         }}
         pointer={{
           type: "needle",
-          color: "#3D7C47",
+          color: needleColor,
           length: 0.75,
           width: 12,
           animationDelay: 50,
@@ -62,7 +83,7 @@ export function AqiGauge({ value }: AqiGaugeProps) {
           valueLabel: {
             style: {
               fontSize: "32px",
-              fill: "#2D3B2D",
+              fill: valueColor,
               fontFamily: "var(--font-outfit), sans-serif",
               fontWeight: "700",
             },
@@ -81,10 +102,11 @@ export function AqiGauge({ value }: AqiGaugeProps) {
             ],
             style: {
               fontSize: "9px",
-              fill: "#5A6B5A",
+              fill: tickColor,
               fontWeight: "600",
             },
           },
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         } as any}
       />
     </div>

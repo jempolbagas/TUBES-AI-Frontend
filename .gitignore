@@ -57,4 +57,5 @@ next-env.d.ts
 # AI Assistant config
 AGENTS.md
 CLAUDE.md
-
+.agents/
+ORIGINAL_REQUEST.md

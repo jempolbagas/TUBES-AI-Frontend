@@ -119,6 +119,7 @@ export function HeroSection() {
 
   const [liveData, setLiveData] = useState<PredictionResponse | null>(null);
   const [isLiveLoading, setIsLiveLoading] = useState(true);
+  const [liveError, setLiveError] = useState<string | null>(null);
 
   useEffect(() => {
     let active = true;
@@ -128,6 +129,7 @@ export function HeroSection() {
       })
       .catch((err) => {
         console.error("Failed to fetch live AQI for hero:", err);
+        if (active) setLiveError(err instanceof Error ? err.message : t.results.error);
       })
       .finally(() => {
         if (active) setIsLiveLoading(false);
@@ -209,8 +211,8 @@ export function HeroSection() {
               transition={makeTransition(0.6, "easeOut", 0.24)}
               className="flex flex-wrap gap-2.5 justify-center lg:justify-start"
             >
-              <StatPill icon={<Brain className="h-3.5 w-3.5" />} label="Model Accuracy" value="≥ 97.8% R²" />
-              <StatPill icon={<Database className="h-3.5 w-3.5" />} label="Training Data" value="3+ Years" />
+              <StatPill icon={<Brain className="h-3.5 w-3.5" />} label="Model Accuracy" value="≥ 72% R²" />
+              <StatPill icon={<Database className="h-3.5 w-3.5" />} label="Training Data" value="2 Years" />
               <StatPill icon={<Wind className="h-3.5 w-3.5" />} label="Data Source" value="Open-Meteo" />
             </motion.div>
 
@@ -293,11 +295,16 @@ export function HeroSection() {
                     key="error"
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
-                    className="glass-card p-6 rounded-2xl border border-red-500/20 text-center w-full bg-gradient-to-b from-white/95 to-bg-secondary/80 dark:from-bg-secondary/95 dark:to-bg-primary/90"
+                    className="glass-card p-6 rounded-2xl border border-red-500/20 text-center w-full bg-gradient-to-b from-white/95 to-bg-secondary/80 dark:from-bg-secondary/95 dark:to-bg-primary/90 space-y-2"
                   >
-                    <p className="text-sm font-bold text-text-secondary">
-                      Failed to load real-time AQI data.
+                    <p className="text-sm font-bold text-red-500">
+                      {t.results.error}
                     </p>
+                    {liveError && (
+                      <p className="text-xs text-text-muted leading-relaxed">
+                        {liveError}
+                      </p>
+                    )}
                   </motion.div>
                 )}
               </AnimatePresence>

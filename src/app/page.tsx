@@ -10,10 +10,9 @@ import { PredictionResult } from "@/components/dashboard/prediction-result";
 import { AqiLegend } from "@/components/dashboard/aqi-legend";
 import { usePrediction } from "@/hooks/use-prediction";
 import { WeatherInput } from "@/types";
-import { HistoricalTrendChart } from "@/components/dashboard/historical-trend-chart";
 
 export default function Home() {
-  const { data, isLoading, error, predict, clear } = usePrediction();
+  const { data, isLoading, error, predict, retry, clear } = usePrediction();
   const [activePredictorTab, setActivePredictorTab] = useState("predict");
 
   const handlePredictTomorrow = () => {
@@ -54,7 +53,7 @@ export default function Home() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.6, ease: "easeOut" }}
-          className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start"
+          className="grid grid-cols-1 lg:grid-cols-12 gap-8"
         >
           {/* Controllers: Tab Panel & Forms (Col Span 7) */}
           <div className="lg:col-span-7 space-y-6">
@@ -67,13 +66,12 @@ export default function Home() {
               isLoading={isLoading}
               predictionData={data}
             />
-            <HistoricalTrendChart />
+            <AqiLegend />
           </div>
 
           {/* Results: Gauge and Health Recommendations (Col Span 5) */}
-          <div className="lg:col-span-5 space-y-6 lg:sticky lg:top-24">
-            <PredictionResult data={data} isLoading={isLoading} error={error} />
-            <AqiLegend />
+          <div className="lg:col-span-5 h-full">
+            <PredictionResult data={data} isLoading={isLoading} error={error} onRetry={retry} />
           </div>
         </motion.div>
       </main>

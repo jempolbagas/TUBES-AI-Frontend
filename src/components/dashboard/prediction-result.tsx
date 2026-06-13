@@ -2,33 +2,36 @@
 
 import React from "react";
 import { motion } from "motion/react";
-import { 
-  AlertCircle, 
-  Calendar, 
-  Sparkles, 
-  ShieldCheck, 
-  Info, 
+import {
+  AlertCircle,
+  Calendar,
+  Sparkles,
+  ShieldCheck,
+  Info,
   AlertTriangle,
   Thermometer,
   Droplets,
-  Wind
+  Wind,
+  RefreshCw
 } from "lucide-react";
 import { useTranslation } from "@/i18n";
 import { PredictionResponse } from "@/types";
-import { 
-  getAqiBgColorClass, 
-  getAqiCategory, 
-  getAqiTextColorClass, 
-  getAqiColor 
+import {
+  getAqiBgColorClass,
+  getAqiCategory,
+  getAqiTextColorClass,
+  getAqiColor
 } from "@/lib/aqi-utils";
 import { HealthTips } from "./health-tips";
 import { NumberTicker } from "@/components/animated/number-ticker";
 import { cn } from "@/lib/utils";
+import { AiThinkingLoader } from "./ai-thinking-loader";
 
 interface PredictionResultProps {
   data: PredictionResponse | null;
   isLoading: boolean;
   error: string | null;
+  onRetry?: () => void;
 }
 
 // ─── Radial 240-degree speedometer gauge ──────────────────────────────────────
@@ -37,7 +40,7 @@ function AqiGaugeSVG({ aqi, color }: { aqi: number; color: string }) {
   const VH = 150;
   const cx = 100;
   const cy = 95;
-  const r  = 72;
+  const r = 72;
   const stroke = 10;
 
   const toRad = (deg: number) => (deg * Math.PI) / 180;
@@ -52,15 +55,15 @@ function AqiGaugeSVG({ aqi, color }: { aqi: number; color: string }) {
   };
 
   // 240° speedometer style: starts at 150° (bottom-left) and ends at 390° (bottom-right)
-  const cappedAqi  = Math.min(Math.max(aqi, 0), 300);
-  const sweepDeg   = (cappedAqi / 300) * 240;
-  const trackPath  = describeArc(150, 390);
-  const progPath   = sweepDeg > 0 ? describeArc(150, 150 + sweepDeg) : null;
+  const cappedAqi = Math.min(Math.max(aqi, 0), 300);
+  const sweepDeg = (cappedAqi / 300) * 240;
+  const trackPath = describeArc(150, 390);
+  const progPath = sweepDeg > 0 ? describeArc(150, 150 + sweepDeg) : null;
 
   // Needle tip dot
   const needleDeg = 150 + sweepDeg;
-  const needleX   = cx + r * Math.cos(toRad(needleDeg));
-  const needleY   = cy + r * Math.sin(toRad(needleDeg));
+  const needleX = cx + r * Math.cos(toRad(needleDeg));
+  const needleY = cy + r * Math.sin(toRad(needleDeg));
 
   // Ticks at 0, 50, 100, 150, 200, 300
   const tickValues = [0, 50, 100, 150, 200, 300];
@@ -114,7 +117,7 @@ function AqiGaugeSVG({ aqi, color }: { aqi: number; color: string }) {
       {tickAngles.map((angle, i) => {
         const rad = toRad(angle);
         const val = tickValues[i];
-        
+
         // Coordinates for tick line
         const x1 = cx + INNER * Math.cos(rad);
         const y1 = cy + INNER * Math.sin(rad);
@@ -157,7 +160,7 @@ function AqiGaugeSVG({ aqi, color }: { aqi: number; color: string }) {
           cy={needleY}
           r={5}
           fill={color}
-          style={{ 
+          style={{
             filter: `drop-shadow(0 0 5px ${color})`,
             transition: "all 1.2s cubic-bezier(0.22,1,0.36,1)"
           }}
@@ -167,7 +170,7 @@ function AqiGaugeSVG({ aqi, color }: { aqi: number; color: string }) {
   );
 }
 
-export function PredictionResult({ data, isLoading, error }: PredictionResultProps) {
+export function PredictionResult({ data, isLoading, error, onRetry }: PredictionResultProps) {
   const { t, lang } = useTranslation();
 
   if (error) {
@@ -179,24 +182,24 @@ export function PredictionResult({ data, isLoading, error }: PredictionResultPro
         <h3 className="font-heading text-lg font-bold text-text-primary mb-2">
           {t.results.error}
         </h3>
-        <p className="text-sm text-text-secondary max-w-sm mb-2">{error}</p>
-        <p className="text-xs text-text-muted">{t.results.details}: API Connection Timeout / Host Unreachable</p>
+        <p className="text-sm text-text-secondary max-w-sm mb-6">
+          {t.results.details}: {error}
+        </p>
+        {onRetry && (
+          <button
+            onClick={onRetry}
+            className="group inline-flex items-center gap-2.5 rounded-full bg-red-500/10 hover:bg-red-500/20 border border-red-500/25 hover:border-red-500/40 text-red-600 dark:text-red-400 font-bold text-xs tracking-wide px-5 py-2.5 shadow-sm transition-all duration-300 hover:scale-105 cursor-pointer active:scale-95"
+          >
+            <RefreshCw className="h-3.5 w-3.5 transition-transform duration-500 group-hover:rotate-180" />
+            <span>{lang === "en" ? "Try Again" : "Coba Lagi"}</span>
+          </button>
+        )}
       </div>
     );
   }
 
   if (isLoading) {
-    return (
-      <div className="glass-card p-6 sm:p-7 rounded-3xl flex flex-col items-center justify-center text-center h-full min-h-[350px]">
-        <div className="relative mb-6">
-          <div className="h-20 w-20 rounded-full border-4 border-accent-sage/30 border-t-accent-green animate-spin" />
-          <Sparkles className="absolute inset-0 m-auto h-6 w-6 text-accent-green animate-pulse" />
-        </div>
-        <span className="text-base font-bold text-text-primary mb-2">
-          {t.predictTab.loadingText}
-        </span>
-      </div>
-    );
+    return <AiThinkingLoader />;
   }
 
   if (!data) {
@@ -211,13 +214,13 @@ export function PredictionResult({ data, isLoading, error }: PredictionResultPro
           {/* Glowing expanding pulse rings */}
           <div className="absolute inset-0 rounded-full bg-accent-green/10 animate-ping opacity-60" />
           <div className="absolute inset-2 rounded-full bg-accent-green/20 animate-pulse" />
-          
+
           {/* Icon Container */}
           <div className="relative h-12 w-12 rounded-full bg-bg-secondary flex items-center justify-center text-accent-green border border-border shadow-sm">
             <Sparkles className="h-5 w-5" />
           </div>
         </div>
-        
+
         <h3 className="font-heading text-lg font-bold text-text-primary mb-2">
           {t.results.waiting}
         </h3>
@@ -322,22 +325,17 @@ export function PredictionResult({ data, isLoading, error }: PredictionResultPro
       </div>
 
       {/* ── Main Content ── */}
-      <motion.div 
+      <motion.div
         variants={containerVariants}
         initial="hidden"
         animate="show"
-        className="relative z-10 flex flex-col gap-6 justify-center flex-1"
+        className="relative z-10 flex flex-col justify-evenly flex-1 gap-4"
       >
         {/* Gauge Container */}
-        <motion.div 
+        <motion.div
           variants={itemVariants}
           className="w-full max-w-[240px] shrink-0 relative flex items-center justify-center mx-auto"
         >
-          {/* Ambient Glow ring behind the gauge */}
-          <div 
-            className="absolute h-36 w-36 rounded-full blur-3xl opacity-15 animate-pulse"
-            style={{ backgroundColor: aqiColor }}
-          />
           <AqiGaugeSVG aqi={data.predicted_aqi} color={aqiColor} />
 
           {/* Centered AQI text inside the gauge */}
@@ -352,16 +350,16 @@ export function PredictionResult({ data, isLoading, error }: PredictionResultPro
         </motion.div>
 
         {/* Text Details & Recommendations */}
-        <motion.div 
+        <motion.div
           variants={itemVariants}
-          className="flex-1 flex flex-col gap-5 w-full"
+          className="flex-1 flex flex-col justify-between w-full gap-4"
         >
           <div className="flex flex-col gap-3">
             <div className="flex flex-col items-center gap-2">
               <span className="text-[9px] font-black uppercase tracking-widest text-text-muted">
                 {t.results.categoryLabel}
               </span>
-              
+
               {/* Category Pill with Icon */}
               <span
                 className={cn(
@@ -372,14 +370,6 @@ export function PredictionResult({ data, isLoading, error }: PredictionResultPro
                 {getCategoryIcon(category)}
                 <span>{title}</span>
               </span>
-            </div>
-
-            {/* Description Quote block */}
-            <div 
-              className="relative w-full p-4 rounded-2xl border-l-4 bg-bg-secondary/35 text-xs text-text-secondary font-medium leading-relaxed"
-              style={{ borderLeftColor: aqiColor }}
-            >
-              {desc}
             </div>
           </div>
 

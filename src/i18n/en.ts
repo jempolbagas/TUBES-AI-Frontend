@@ -10,7 +10,7 @@ export const en = {
     cta: "Start Analysis",
     scrollHint: "Scroll down to forecast",
     liveAqi: "Live Today's AQI",
-    liveAqiLabel: "Current Air Quality in Jakarta",
+    liveAqiLabel: "Jakarta",
   },
   tabs: {
     predict: "Predict Tomorrow",
@@ -84,7 +84,7 @@ export const en = {
     btnText: "Fetch & Predict Tomorrow",
     loadingText: "Retrieving weather data and running model...",
     lastUpdated: "Last updated today at",
-    referenceDate: "Reference Date (Today)",
+    referenceDate: "Reference Date",
     predictionDate: "Forecast Date (Tomorrow)",
   },
   manualTab: {
@@ -173,7 +173,7 @@ export const en = {
     title: "AQI Scale Reference",
     good: "0-50 (Good)",
     moderate: "51-100 (Moderate)",
-    sensitive: "101-150 (Unhealthy - Sensitive)",
+    sensitive: "101-150 (Sensitive)",
     unhealthy: "151-200 (Unhealthy)",
     veryUnhealthy: "201-300 (Very Unhealthy)",
     hazardous: "300+ (Hazardous)",
@@ -185,7 +185,7 @@ export const en = {
     predicted: "Predicted AQI",
   },
   footer: {
-    builtBy: "Built with ❤️ for AI Project",
+    builtBy: "Built by Asril, Bagas, and Radit",
     credits: "Powered by Open-Meteo Weather API & Scikit-Learn ML Model",
   }
 };

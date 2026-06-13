@@ -66,6 +66,14 @@
   --color-aqi-unhealthy: var(--aqi-unhealthy);
   --color-aqi-very-unhealthy: var(--aqi-very-unhealthy);
   --color-aqi-hazardous: var(--aqi-hazardous);
+
+  /* Centralized AQI Text Color variables for accessibility */
+  --color-aqi-good-text: var(--aqi-good-text);
+  --color-aqi-moderate-text: var(--aqi-moderate-text);
+  --color-aqi-sensitive-text: var(--aqi-sensitive-text);
+  --color-aqi-unhealthy-text: var(--aqi-unhealthy-text);
+  --color-aqi-very-unhealthy-text: var(--aqi-very-unhealthy-text);
+  --color-aqi-hazardous-text: var(--aqi-hazardous-text);
 }
 
 :root {
@@ -109,12 +117,20 @@
   --accent-warm: #C4956A;
 
   /* Centralized AQI Colors */
-  --aqi-good: #4CAF50;
-  --aqi-moderate: #FFC107;
-  --aqi-sensitive: #FF9800;
-  --aqi-unhealthy: #F44336;
-  --aqi-very-unhealthy: #9C27B0;
-  --aqi-hazardous: #7B1FA2;
+  --aqi-good: #488B52;
+  --aqi-moderate: #C98E34;
+  --aqi-sensitive: #C66B43;
+  --aqi-unhealthy: #B23A30;
+  --aqi-very-unhealthy: #7A3580;
+  --aqi-hazardous: #521F50;
+
+  /* Centralized AQI Text Colors (Contrast Optimized for Light Mode) */
+  --aqi-good-text: #357241;
+  --aqi-moderate-text: #9E6A16;
+  --aqi-sensitive-text: #A74519;
+  --aqi-unhealthy-text: #962820;
+  --aqi-very-unhealthy-text: #602565;
+  --aqi-hazardous-text: #3D123B;
 }
 
 .dark {
@@ -149,6 +165,22 @@
   --accent-green-light: #76C182;
   --accent-sage: #3D7C47;
   --accent-warm: #D4A373;
+
+  /* Centralized AQI Colors (Dark Mode) */
+  --aqi-good: #5BA066;
+  --aqi-moderate: #DFAB6C;
+  --aqi-sensitive: #E88252;
+  --aqi-unhealthy: #E85B50;
+  --aqi-very-unhealthy: #B868C1;
+  --aqi-hazardous: #8D3C8A;
+
+  /* Centralized AQI Text Colors (Dark Mode) */
+  --aqi-good-text: #5BA066;
+  --aqi-moderate-text: #DFAB6C;
+  --aqi-sensitive-text: #E88252;
+  --aqi-unhealthy-text: #E85B50;
+  --aqi-very-unhealthy-text: #B868C1;
+  --aqi-hazardous-text: #8D3C8A;
 }
 
 @layer base {
@@ -166,10 +198,16 @@
 /* Glassmorphism custom classes */
 .glass-card {
   background: var(--bg-card);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
   border: 1px solid var(--border);
-  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.04);
+  box-shadow: 0 8px 40px 0 rgba(0, 0, 0, 0.06),
+              0 1px 0 0 rgba(255,255,255,0.12) inset;
+}
+
+.dark .glass-card {
+  box-shadow: 0 8px 40px 0 rgba(0, 0, 0, 0.25),
+              0 1px 0 0 rgba(255,255,255,0.05) inset;
 }
 
 .glass-card-hover {
@@ -178,8 +216,30 @@
 
 .glass-card-hover:hover {
   transform: translateY(-2px);
-  box-shadow: 0 12px 40px 0 rgba(61, 124, 71, 0.08);
+  box-shadow: 0 16px 48px 0 rgba(61, 124, 71, 0.10);
   border-color: rgba(61, 124, 71, 0.25);
+}
+
+/* Stat pill shimmer glow */
+@keyframes hero-float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+}
+
+.hero-float {
+  animation: hero-float 6s ease-in-out infinite;
+}
+
+/* Gradient text pulse */
+@keyframes gradient-shift {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.animated-gradient-text {
+  background-size: 200% 200%;
+  animation: gradient-shift 5s ease infinite;
 }
 
 /* Custom Scrollbar */

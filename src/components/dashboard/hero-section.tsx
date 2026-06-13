@@ -286,8 +286,6 @@ export function HeroSection() {
                     <LiveAqiCard
                       aqi={Math.round(liveData.weather_data.aqi)}
                       weatherData={liveData.weather_data}
-                      categoryLabel={liveData.category_label}
-                      description={liveData.description}
                     />
                   </motion.div>
                 ) : (

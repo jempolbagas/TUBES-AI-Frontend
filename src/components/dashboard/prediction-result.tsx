@@ -182,8 +182,9 @@ export function PredictionResult({ data, isLoading, error, onRetry }: Prediction
         <h3 className="font-heading text-lg font-bold text-text-primary mb-2">
           {t.results.error}
         </h3>
-        <p className="text-sm text-text-secondary max-w-sm mb-2">{error}</p>
-        <p className="text-xs text-text-muted max-w-sm mb-6">{t.results.details}: {error}</p>
+        <p className="text-sm text-text-secondary max-w-sm mb-6">
+          {t.results.details}: {error}
+        </p>
         {onRetry && (
           <button
             onClick={onRetry}

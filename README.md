@@ -28,8 +28,7 @@ Aplikasi ini dirancang untuk memberikan informasi kualitas udara secara real-tim
 4. **Kenyamanan & Aksesibilitas (UX/UI)**:
    - **Dukungan Dua Bahasa (i18n)**: Dukungan penuh Bahasa Indonesia (`id`) dan Bahasa Inggris (`en`).
    - **Mode Gelap Adaptif (Dark Mode First)**: Tampilan premium bertema ekologis yang menyesuaikan dengan kenyamanan mata pengguna dan tersimpan dalam `localStorage`.
-   - **Robust Auto-Fallback**: Sistem pertahanan tangguh yang mendeteksi matinya API backend, kemudian mengalihkan secara otomatis ke data mock simulasi yang realistis tanpa merusak jalannya aplikasi.
-
+   - **Error Handling + Retry UI**: Menampilkan pesan error saat Open-Meteo/backend gagal dan menyediakan tombol untuk mencoba kembali tanpa merusak jalannya aplikasi.
 ---
 
 ## 🛠️ Struktur Folder & Analisis Kode

@@ -62,11 +62,10 @@ graph TD
     User([Pengguna]) -->|Pilih Tab Prediksi / Input Form| UI[Dashboard UI / Form]
     UI -->|Panggil predict| Hook[usePrediction Hook]
     Hook -->|Request via fetch| API[api.ts client]
-    API -->|Cek status/koneksi| Backend{API Backend Live?}
-    Backend -->|Ya| Server[Endpoint Backend /api/predict]
-    Backend -->|Tidak/Timeout| Mock[Penyedia Data Mock / mock-data.ts]
-    Server -->|Response JSON| API
-    Mock -->|Fallback Mock JSON| API
+    API --> OpenMeteo[Open-Meteo API]
+    OpenMeteo -->|Weather + AQI JSON| API
+    API --> Backend[Endpoint Backend /api/predict]
+    Backend -->|Response JSON| API
     API -->|Return PredictionResponse| Hook
     Hook -->|Update State| UI
     UI -->|Render Animasi & Gauge| Gauge[AqiGaugeSVG / LiveAqiCard]

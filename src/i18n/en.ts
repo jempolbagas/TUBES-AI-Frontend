@@ -92,6 +92,13 @@ export const en = {
     subtitle: "Input arbitrary weather metrics to simulate how different conditions affect Jakarta's AQI.",
     btnText: "Simulate & Predict",
     validationError: "Please check that all values are within reasonable limits.",
+    presets: {
+      title: "Scenario Presets",
+      clean: "Clean Breeze",
+      monsoon: "Monsoon Rain",
+      smog: "Severe Smog",
+      sunny: "Sunny & Dry",
+    },
     fields: {
       aqi: "Current AQI (0 - 500)",
       tempMean: "Avg Temperature (°C)",

@@ -92,6 +92,13 @@ export const id = {
     subtitle: "Masukkan parameter cuaca secara manual untuk mensimulasikan bagaimana cuaca memengaruhi kualitas udara Jakarta.",
     btnText: "Simulasikan & Prediksi",
     validationError: "Harap periksa kembali apakah nilai berada dalam batas yang wajar.",
+    presets: {
+      title: "Preset Skenario",
+      clean: "Udara Bersih",
+      monsoon: "Hujan Monsun",
+      smog: "Asap Pekat",
+      sunny: "Cerah & Kering",
+    },
     fields: {
       aqi: "AQI Saat Ini (0 - 500)",
       tempMean: "Suhu Rata-rata (°C)",

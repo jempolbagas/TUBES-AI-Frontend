@@ -10,7 +10,7 @@ export const id = {
     cta: "Mulai Prediksi",
     scrollHint: "Gulir ke bawah untuk prakiraan",
     liveAqi: "AQI Hari Ini (Live)",
-    liveAqiLabel: "Kualitas Udara Jakarta Saat Ini",
+    liveAqiLabel: "Jakarta",
   },
   tabs: {
     predict: "Prediksi Esok Hari",
@@ -173,7 +173,7 @@ export const id = {
     title: "Referensi Skala AQI",
     good: "0-50 (Baik)",
     moderate: "51-100 (Sedang)",
-    sensitive: "101-150 (Tidak Sehat - Sensitif)",
+    sensitive: "101-150 (Sensitif)",
     unhealthy: "151-200 (Tidak Sehat)",
     veryUnhealthy: "201-300 (Sangat Tidak Sehat)",
     hazardous: "300+ (Berbahaya)",
@@ -185,7 +185,7 @@ export const id = {
     predicted: "Prediksi AQI",
   },
   footer: {
-    builtBy: "Dibuat dengan ❤️ untuk Proyek AI",
+    builtBy: "Dibuat oleh Asril, Bagas, dan Radit",
     credits: "Didukung oleh API Cuaca Open-Meteo & Model ML Scikit-Learn",
   }
 };

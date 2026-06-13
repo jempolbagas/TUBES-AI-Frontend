@@ -10,7 +10,7 @@ export function Navbar() {
   const { theme, toggleTheme } = useTheme();
 
   return (
-    <nav className="sticky top-4 z-50 mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 pointer-events-none">
+    <nav className="fixed top-4 left-0 right-0 z-50 mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 pointer-events-none">
       <div className="w-full border border-border/40 bg-background/70 dark:bg-bg-card/75 backdrop-blur-lg shadow-lg rounded-2xl pointer-events-auto px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
           {/* Logo Brand */}
@@ -30,21 +30,19 @@ export function Navbar() {
               <div className="flex rounded-md bg-bg-secondary p-0.5 border border-border">
                 <button
                   onClick={() => setLang("id")}
-                  className={`rounded px-2.5 py-1 text-xs font-semibold transition-all cursor-pointer ${
-                    lang === "id"
-                      ? "bg-card text-accent-green shadow-sm dark:bg-bg-primary"
-                      : "text-text-secondary hover:text-text-primary"
-                  }`}
+                  className={`rounded px-2.5 py-1 text-xs font-semibold transition-all cursor-pointer ${lang === "id"
+                    ? "bg-card text-accent-green shadow-sm dark:bg-bg-primary"
+                    : "text-text-secondary hover:text-text-primary"
+                    }`}
                 >
                   ID
                 </button>
                 <button
                   onClick={() => setLang("en")}
-                  className={`rounded px-2.5 py-1 text-xs font-semibold transition-all cursor-pointer ${
-                    lang === "en"
-                      ? "bg-card text-accent-green shadow-sm dark:bg-bg-primary"
-                      : "text-text-secondary hover:text-text-primary"
-                  }`}
+                  className={`rounded px-2.5 py-1 text-xs font-semibold transition-all cursor-pointer ${lang === "en"
+                    ? "bg-card text-accent-green shadow-sm dark:bg-bg-primary"
+                    : "text-text-secondary hover:text-text-primary"
+                    }`}
                 >
                   EN
                 </button>

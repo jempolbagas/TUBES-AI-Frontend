@@ -211,8 +211,8 @@ export function HeroSection() {
               transition={makeTransition(0.6, "easeOut", 0.24)}
               className="flex flex-wrap gap-2.5 justify-center lg:justify-start"
             >
-              <StatPill icon={<Brain className="h-3.5 w-3.5" />} label="Model Accuracy" value="≥ 97.8% R²" />
-              <StatPill icon={<Database className="h-3.5 w-3.5" />} label="Training Data" value="3+ Years" />
+              <StatPill icon={<Brain className="h-3.5 w-3.5" />} label="Model Accuracy" value="≥ 72% R²" />
+              <StatPill icon={<Database className="h-3.5 w-3.5" />} label="Training Data" value="2 Years" />
               <StatPill icon={<Wind className="h-3.5 w-3.5" />} label="Data Source" value="Open-Meteo" />
             </motion.div>
 

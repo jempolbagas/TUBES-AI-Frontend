@@ -9,11 +9,16 @@ export const en = {
     badge: "Jakarta, Indonesia",
     cta: "Start Analysis",
     scrollHint: "Scroll down to forecast",
+    liveAqi: "Live Today's AQI",
+    liveAqiLabel: "Current Air Quality in Jakarta",
   },
   tabs: {
     predict: "Predict Tomorrow",
+    predictShort: "Auto",
     manual: "Custom Scenario",
+    manualShort: "Manual",
     history: "Historical Check",
+    historyShort: "History",
   },
   metrics: {
     temperature_mean: "Avg Temperature",

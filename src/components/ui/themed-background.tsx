@@ -35,8 +35,10 @@ export function ThemedBackground() {
           sizes="100vw"
           className="object-cover object-center"
         />
-        {/* Soft overlay: 15% dark tint with slight backdrop-blur for text legibility */}
-        <div className="absolute inset-0 bg-black/15 backdrop-blur-[2px]" />
+        {/* Soft overlay: 10% dark tint with slight backdrop-blur for text legibility */}
+        <div className="absolute inset-0 bg-black/10 backdrop-blur-[1.5px]" />
+        {/* Bottom gradient fade into page background */}
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#F5F0E8]/40 to-[#F5F0E8] pointer-events-none" />
       </div>
 
       {/* Dark Mode Background: Night cityscape */}
@@ -53,8 +55,10 @@ export function ThemedBackground() {
           sizes="100vw"
           className="object-cover object-center"
         />
-        {/* Soft overlay: 45% dark tint with slight backdrop-blur for text legibility */}
-        <div className="absolute inset-0 bg-black/45 backdrop-blur-[2px]" />
+        {/* Soft overlay: 40% dark tint with slight backdrop-blur for text legibility */}
+        <div className="absolute inset-0 bg-black/40 backdrop-blur-[1.5px]" />
+        {/* Bottom gradient fade into page background */}
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#121814]/40 to-[#121814] pointer-events-none" />
       </div>
     </div>
   );

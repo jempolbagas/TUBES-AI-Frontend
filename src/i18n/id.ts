@@ -9,11 +9,16 @@ export const id = {
     badge: "Jakarta, Indonesia",
     cta: "Mulai Prediksi",
     scrollHint: "Gulir ke bawah untuk prakiraan",
+    liveAqi: "AQI Hari Ini (Live)",
+    liveAqiLabel: "Kualitas Udara Jakarta Saat Ini",
   },
   tabs: {
     predict: "Prediksi Esok Hari",
+    predictShort: "Auto",
     manual: "Simulasi Skenario",
+    manualShort: "Manual",
     history: "Cek Riwayat",
+    historyShort: "Riwayat",
   },
   metrics: {
     temperature_mean: "Suhu Rata-rata",

@@ -31,9 +31,9 @@ export function TabContainer({
   const { t } = useTranslation();
 
   const tabs = [
-    { id: "predict", label: t.tabs.predict, icon: <Sparkles className="h-4 w-4" /> },
-    { id: "manual", label: t.tabs.manual, icon: <SlidersHorizontal className="h-4 w-4" /> },
-    { id: "history", label: t.tabs.history, icon: <History className="h-4 w-4" /> },
+    { id: "predict", label: t.tabs.predict, labelShort: t.tabs.predictShort, icon: <Sparkles className="h-4 w-4" /> },
+    { id: "manual", label: t.tabs.manual, labelShort: t.tabs.manualShort, icon: <SlidersHorizontal className="h-4 w-4" /> },
+    { id: "history", label: t.tabs.history, labelShort: t.tabs.historyShort, icon: <History className="h-4 w-4" /> },
   ];
 
   return (
@@ -47,19 +47,20 @@ export function TabContainer({
               <button
                 key={tab.id}
                 onClick={() => setActivePredictorTab(tab.id)}
-                className={`relative flex items-center justify-center gap-2 rounded-xl px-4 py-2.5 text-sm font-semibold transition-colors duration-300 cursor-pointer flex-1 min-w-[140px] ${
+                className={`relative flex items-center justify-center gap-2 rounded-xl px-4 py-2.5 text-sm font-semibold transition-colors duration-300 cursor-pointer flex-1 min-w-[100px] sm:min-w-[140px] ${
                   isActive ? "text-white" : "text-text-secondary hover:text-text-primary"
                 }`}
               >
                 {isActive && (
                   <motion.div
-                    layoutId="activeTabBackground"
+                     layoutId="activeTabBackground"
                     className="absolute inset-0 bg-accent-green rounded-xl -z-10 shadow-md shadow-accent-green/10"
                     transition={{ type: "spring", stiffness: 350, damping: 28 }}
                   />
                 )}
                 {tab.icon}
-                <span>{tab.label}</span>
+                <span className="hidden sm:inline">{tab.label}</span>
+                <span className="sm:hidden">{tab.labelShort}</span>
               </button>
             );
           })}

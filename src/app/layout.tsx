@@ -54,6 +54,12 @@ export default function RootLayout({
           <ThemeProvider>
             <TooltipProvider>
               <ThemedBackground />
+              <a
+                href="#dashboard"
+                className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] bg-accent-green text-primary-foreground px-4 py-2 rounded-full font-bold shadow-lg"
+              >
+                Skip to content / Lompat ke konten
+              </a>
               {children}
             </TooltipProvider>
           </ThemeProvider>

@@ -147,7 +147,7 @@ export function ManualTab({ onPredict, isLoading }: ManualTabProps) {
                 value={formData[f.name as keyof WeatherInput]}
                 onChange={handleChange}
                 disabled={isLoading}
-                className="bg-white/50 border-border focus:border-accent-green hover:border-accent-sage/60 rounded-xl w-[90px] text-right font-semibold text-text-primary"
+                className="bg-white/50 dark:bg-black/25 border-border focus:border-accent-green hover:border-accent-sage/60 rounded-xl w-[90px] text-right font-semibold text-text-primary"
                 required
               />
             </div>

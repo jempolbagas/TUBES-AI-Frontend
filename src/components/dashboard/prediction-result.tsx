@@ -180,7 +180,7 @@ export function PredictionResult({ data, isLoading, error }: PredictionResultPro
           {t.results.error}
         </h3>
         <p className="text-sm text-text-secondary max-w-sm mb-2">{error}</p>
-        <p className="text-xs text-text-muted">{t.results.details}: API Connection Timeout / Host Unreachable</p>
+        <p className="text-xs text-text-muted max-w-sm">{t.results.details}: {error}</p>
       </div>
     );
   }
